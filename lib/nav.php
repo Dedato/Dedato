@@ -11,21 +11,25 @@
  *   <li class="menu-sample-page"><a href="/sample-page/">Sample Page</a></li>
  */
 class Roots_Nav_Walker extends Walker_Nav_Menu {
-  function check_current($classes) {
-    return preg_match('/(current[-_])|active|dropdown/', $classes);
-  }
+	function check_current($classes) {
+		return preg_match('/(current[-_])|active|dropdown/', $classes);
+	}
 
-  function start_lvl(&$output, $depth = 0, $args = array()) {
-    $output .= "\n<ul class=\"dropdown-menu\">\n";
-  }
+	function start_lvl(&$output, $depth = 0, $args = array()) {
+		$output .= "\n<ul class=\"dropdown-menu\">\n";
+	}
 
   function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
     $item_html = '';
     parent::start_el($item_html, $item, $depth, $args);
 
     if ($item->is_dropdown && ($depth === 0)) {
-      $item_html = str_replace('<a', '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"', $item_html);
-      $item_html = str_replace('</a>', ' <b class="caret"></b></a>', $item_html);
+    	if ($item->ID == 45 || $item->ID == 412) {
+    		$item_html = str_replace('<a', '<a class="reset"', $item_html);
+    	} else {
+	      $item_html = str_replace('<a', '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"', $item_html);
+	      $item_html = str_replace('</a>', ' <b class="caret"></b></a>', $item_html);
+	   }   
     }
     elseif (stristr($item_html, 'li class="divider')) {
       $item_html = preg_replace('/<a[^>]*>.*?<\/a>/iU', '', $item_html);
@@ -39,14 +43,69 @@ class Roots_Nav_Walker extends Walker_Nav_Menu {
   }
 
   function display_element($element, &$children_elements, $max_depth, $depth = 0, $args, &$output) {
-    $element->is_dropdown = ((!empty($children_elements[$element->ID]) && (($depth + 1) < $max_depth || ($max_depth === 0))));
-
-    if ($element->is_dropdown) {
-      $element->classes[] = 'dropdown';
-    }
-
-    parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
-  }
+  
+  	 	// Add project categories ass isotope filters
+		if (is_front_page() && $depth == 0 && ($element->ID == 45 || $element->ID == 412) ) {
+			$elementid 	= $element->ID;
+			$parenturl 	= $element->url;
+			$objectid 	= $element->object_id;
+			
+			// Categories
+			global $sitepress;
+			$curlan = ICL_LANGUAGE_CODE;
+			$sitepress->switch_lang('nl'); // Switch to original language
+			$categories = get_terms('discipline'); // Get terms in original language
+			$sitepress->switch_lang($curlan); // Switch back to current language
+			
+			$count = count($categories);
+			if ($count > 0){
+				foreach ($categories as $item) {
+					//$item_slug 	= $item->slug;
+					if (ICL_LANGUAGE_CODE != 'nl') {					
+						$item_id 		= icl_object_id($item->term_id, 'discipline', true);
+						$item 			= get_term($item_id, 'discipline');
+						$item_title 	= $item->name;
+						$item_title 	= str_replace(' @'.ICL_LANGUAGE_CODE, '', $item_title); // remove @en from term title if it's the same
+						$item_slug 		= $item->slug;
+						$item_link 		= get_term_link($item, 'discipline');
+					} else {
+						$item_id 	= $item->term_id;
+						$item_title = $item->name;
+						$item_slug 	= $item->slug;
+						$item_link 	= get_term_link($item);
+					}
+				   if (is_wp_error($item_link)) {
+				   	continue;
+				   }			
+					// Create new Array for each item
+					$item_args = array(
+						'post_title' 				=> $item_title,
+						'post_name' 				=> $item_slug,
+						'post_type' 				=> 'nav_menu_item',
+						'menu_item_parent' 		=> $elementid,
+						'object' 					=> 'custom',
+						'type' 						=> 'custom',
+						'type_label' 				=> 'Anchor',
+						'title' 						=> $item_title,
+						'url' 						=> $item_link,
+						'attr_title' 				=> $item_slug // Needed for Isotope filtering
+					);
+					// Convert Array into Object
+					$children_elements[$elementid][] = (object) $item_args;
+				}
+			}
+		}
+  
+		$element->is_dropdown = ((!empty($children_elements[$element->ID]) && (($depth + 1) < $max_depth || ($max_depth === 0))));
+		if ($element->is_dropdown) {
+			if ($element->ID == 45 || $element->ID == 412) {
+				$element->classes[] = 'filters';
+			} else {
+				$element->classes[] = 'dropdown';	
+			}
+		}
+		parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+	}
 }
 
 /**

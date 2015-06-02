@@ -1,0 +1,222 @@
+/* ==========================================================================
+   Wordpress Login Screen
+   ========================================================================== */
+
+@font-face {
+	font-family:'dedato';
+	src:url('../fonts/dedato/fonts/dedato.eot?-yalosg');
+	src:url('../fonts/dedato/fonts/dedato.eot?#iefix-yalosg') format('embedded-opentype'),
+		url('../fonts/dedato/fonts/dedato.woff?-yalosg') format('woff'),
+		url('../fonts/dedato/fonts/dedato.ttf?-yalosg') format('truetype'),
+		url('../fonts/dedato/fonts/dedato.svg?-yalosg#dedato') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Base */
+body.login {background:#ECEFF0; }
+a {color:#000; text-decoration:none; }
+a:active, a:hover {color:#000; text-decoration:underline; }
+a:focus {color:#000; text-decoration:underline; }
+a:active, a:focus {outline:none; text-decoration:underline; }
+
+#login {padding:8% 15px 0; }
+
+/* Logo */
+.login h1 {font-weight:normal; }
+.login h1 a {
+	background:url('../img/dedato/dd-logo.png') 0 0 no-repeat;
+	background-size:150px 82px;
+	height:82px;
+	width:150px;
+	padding:0;
+	margin:0 0 25px;
+	font-size:50px;
+	line-height:50px;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:400;
+	color:#000;
+	text-align:center;
+	text-decoration:none;
+	text-shadow:none;
+}
+.login h1 a:hover {
+	-moz-opacity:.80;
+	filter:alpha(opacity=80);
+	opacity:.80;
+	-webkit-transition:all 100ms ease;
+	-moz-transition:all 100ms ease;
+	transition:all 100ms ease;
+}
+
+/* Errors */ 
+.login div.error, .login #login_error, .login .message {
+	border:none;
+	margin:0 0 20px 0;
+	background-color:#C60F13;
+	color:#FFF;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	-webkit-border-radius:0;
+	-moz-border-radius:0;
+	border-radius:0;
+}
+.login div.updated, .login .message {
+    background-color:#e6a755;
+    color:#FFF;
+    border:none;
+}
+
+/* Form */
+.login form {
+	margin:20px 0 10px;
+   padding:10px;
+   background:#FFF;
+   border:none;
+   border-radius:0;
+   box-shadow:none;
+   font-weight:normal;
+
+}
+.login #loginform label {
+	color:#000;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:13px;
+}
+.login #loginform .forgetmenot label {font-size:12px; line-height:12px; }
+.login #loginform .input,
+.login input[type="text"] {
+	background:#ECEFF0;
+	border:none;
+	border-radius:0;
+	box-shadow:none;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:13px;
+	font-weight:normal;
+	margin-bottom:20px;
+	margin-right:0;
+	margin-top:5px;
+	padding:4px 5px;
+	width:100%;
+	height:30px;
+}
+.login form .input, .login form input[type="checkbox"], .login input[type="text"] {background:#FFF; }
+input[type="checkbox"], input[type="radio"] {
+    height:16px;
+    width:16px;
+}
+.login #loginform .forgetmenot, .login #loginform .submit {height:30px;}
+
+/* Button */
+.login.wp-core-ui .button.button-large, .login.wp-core-ui .button-group.button-large .button,
+.login input.button-primary, .login button.button-primary, .login a.button-primary {
+	display:inline-block;
+	float:right;
+	height:30px;
+	line-height:30px;
+   margin:0;
+   padding:0 10px;
+	border:none;
+	background:#000;
+   color:#FFF;
+   font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-size:13px;
+   text-shadow:none; 
+   text-decoration:none;
+	-webkit-appearance:none;
+   -webkit-border-radius:0;
+	-moz-border-radius:0;
+	border-radius:0;
+   box-shadow:none;
+   cursor:pointer;
+}
+.login.wp-core-ui .button.hover, 
+.login.wp-core-ui .button:hover,  
+.login.wp-core-ui .button.focus, 
+.login.wp-core-ui .button:focus,
+.login.wp-core-ui .button.active, 
+.login.wp-core-ui .button.active:hover, 
+.login.wp-core-ui .button.active:focus, 
+.login.wp-core-ui .button:active,
+.login.wp-core-ui .button-primary.hover, 
+.login.wp-core-ui .button-primary:hover, 
+.login.wp-core-ui .button-primary.focus, 
+.login.wp-core-ui .button-primary:focus,
+.login.wp-core-ui .button-primary.active, 
+.login.wp-core-ui .button-primary.active:hover, 
+.login.wp-core-ui .button-primary.active:focus, 
+.login.wp-core-ui .button-primary:active,
+.login.wp-core-ui .button-secondary:hover,
+.login.wp-core-ui .button-secondary:focus,
+.login.wp-core-ui .button-secondary:active {
+	background:#616260;
+	color:#FFF;
+	box-shadow:none;
+	text-shadow:none;
+}
+
+.login #login #nav, .login #login #backtoblog {
+	display:inline;
+	width:50%;
+	margin:0;
+	padding:0;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:11px;
+	text-shadow:0 0 0 rgba(0,0,0,0);
+}
+.login #login #backtoblog {display:none; }
+.login #login #backtoblog a {float:right; text-align:right; }
+.login #login #nav a, .login #login p#backtoblog a {color:#000 !important; text-decoration:none;}
+.login #login #nav a:hover, .login #login p#backtoblog a:hover {color:#616260 !important; text-decoration:none;}
+
+/* Captcha */
+.login .captchaSizeDivSmall {float:left;}
+.login .si-captcha, #si_refresh_reg {float:left; margin:0 10px 10px 0;}
+
+
+/* Interim */
+.interim-login #login {margin:0 auto; }
+
+/* Mobile */
+.mobile #login {width:300px; padding:20px 0 0; }
+.mobile #login .message, .mobile #login form, .mobile #login_error {margin-left:0; }
+.mobile #login #backtoblog, .mobile #login #nav {margin-left:0; }
+
+
+/* ==========================================================================
+   Wordpress Dashboard Screen
+   ========================================================================== */
+
+html.wp-toolbar {background-color:#ECEFF0; }
+body.wp-admin {
+	color:#616260;
+	font-family:"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-weight:400;
+}
+#wpadminbar {
+    background-color:#000;
+    color:#616260;
+    font:400 13px/32px "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+#wpadminbar * {font:400 13px/32px "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
+
+#wpadminbar > #wp-toolbar > #wp-admin-bar-root-default #wp-admin-bar-wp-logo .ab-icon, 
+#wpadminbar #wp-admin-bar-wp-logo .ab-icon {
+	color:#FFF;
+   background:none !important;
+   font-family:'dedato';
+	speak:none;
+	font-size:14px;
+	font-style:normal;
+	font-weight:normal;
+	font-variant:normal;
+	text-transform:none;
+	line-height:1;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+#wpadminbar > #wp-toolbar > #wp-admin-bar-root-default #wp-admin-bar-wp-logo .ab-icon:before, 
+#wpadminbar #wp-admin-bar-wp-logo .ab-icon:before {
+	color:#FFF;
+	content: "\e603";
+	top:5px;
+}

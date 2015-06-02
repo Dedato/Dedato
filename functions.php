@@ -16,4 +16,16 @@ require_once locate_template('/lib/comments.php');        // Custom comments mod
 require_once locate_template('/lib/relative-urls.php');   // Root relative URLs
 require_once locate_template('/lib/widgets.php');         // Sidebars and widgets
 require_once locate_template('/lib/scripts.php');         // Scripts and stylesheets
+/**
+ * Custom Post types
+ */
+require_once locate_template('/lib/cpt-project.php');     // Project Post type
+require_once locate_template('/lib/cpt-client.php');      // Client Post type
+require_once locate_template('/lib/cpt-publication.php'); // Publication Post type
+require_once locate_template('/lib/cpt-rewrite-rules.php'); // Rewrite Rules
+/**
+ * Other
+ */
+require_once locate_template('/lib/p2p-connections.php'); // Post 2 Post Connections
+require_once locate_template('/lib/searchresults.php'); 	// Searchresults
 require_once locate_template('/lib/custom.php');          // Custom functions

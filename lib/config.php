@@ -11,8 +11,13 @@ add_theme_support('jquery-cdn');            // Enable to load jQuery from the Go
 /**
  * Configuration values
  */
-define('GOOGLE_ANALYTICS_ID', ''); // UA-XXXXX-Y (Note: Universal Analytics only, not Classic Analytics)
-define('POST_EXCERPT_LENGTH', 40); // Length in words for excerpt_length filter (http://codex.wordpress.org/Plugin_API/Filter_Reference/excerpt_length)
+define('GOOGLE_ANALYTICS_ID', 'UA-4455192-2'); // UA-XXXXX-Y (Note: Universal Analytics only, not Classic Analytics)
+
+if (!defined('WP_ENV')) {
+  define('WP_ENV', 'production');  // scripts.php checks for values 'production' or 'development'
+}
+
+define('POST_EXCERPT_LENGTH', 25); // Length in words for excerpt_length filter (http://codex.wordpress.org/Plugin_API/Filter_Reference/excerpt_length)
 
 /**
  * .main classes
@@ -20,10 +25,10 @@ define('POST_EXCERPT_LENGTH', 40); // Length in words for excerpt_length filter 
 function roots_main_class() {
   if (roots_display_sidebar()) {
     // Classes on pages with the sidebar
-    $class = 'col-sm-8';
+    $class = 'col-md-9';
   } else {
     // Classes on full width pages
-    $class = 'col-sm-12';
+    $class = 'col-md-12';
   }
 
   return $class;
@@ -33,7 +38,7 @@ function roots_main_class() {
  * .sidebar classes
  */
 function roots_sidebar_class() {
-  return 'col-sm-4';
+  return 'col-md-3';
 }
 
 /**
@@ -55,7 +60,10 @@ function roots_display_sidebar() {
      */
     array(
       'is_404',
-      'is_front_page'
+      'is_front_page',
+      'is_page',
+      array('is_tax', array('discipline')),
+      array('is_post_type_archive', array('project', 'publication', 'client'))
     ),
     /**
      * Page template checks (via is_page_template())

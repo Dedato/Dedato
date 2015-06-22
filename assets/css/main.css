@@ -7161,15 +7161,45 @@ blockquote {
   background: transparent;
   padding: 0;
 }
+.content .page .content {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 15px;
+  background: #ffffff;
+}
+@media (min-width: 992px) {
+  .content .page .content {
+    float: left;
+    width: 50%;
+  }
+}
 .content .page.has-image .content {
   background: #ffffff;
 }
+@media (min-width: 992px) {
+  .content .page.has-image .content {
+    right: 50%;
+  }
+}
 .content .page.has-image .entry-image {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
   padding: 0;
 }
-.content .page .content {
-  padding: 15px;
-  background: #ffffff;
+@media (min-width: 992px) {
+  .content .page.has-image .entry-image {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  .content .page.has-image .entry-image {
+    left: 50%;
+  }
 }
 .contact .content .page {
   background: #ffffff;

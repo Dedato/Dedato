@@ -4,15 +4,7 @@
   <?php } else { ?>
     <article <?php post_class('row'); ?>>
   <?php } ?>
-  	<div class="content col-md-6 ">
-			<header>
-				<h1><?php echo roots_title(); ?></h1>
-			</header>
-			<div class="entry-content">	
-				<?php the_content(); ?>
-			</div>
-		</div>
-		<?php if (get_field('page_image')):
+    <?php if (get_field('page_image')):
   		$pageimage    = get_field('page_image');
 			$alt 				  = $pageimage['alt'];
       $img_md_src   = $pageimage['sizes']['medium'];
@@ -24,7 +16,7 @@
   			$img_lg_2x_src 	= wr2x_get_retina_from_url($img_lg_src);
   			$img_xl_2x_src 	= wr2x_get_retina_from_url($img_xl_src);
   		} ?>
-			<div class="entry-image col-md-6">	
+			<div class="entry-image">	
 				<picture>
 					<!--[if IE 9]><video style="display: none;"><![endif]-->
 					<source srcset="<?php if ($img_xl_2x_src) { echo $img_xl_2x_src . ' 2x, '; } echo $img_xl_src .' 1x';  ?>" media="(min-width:1906px)">
@@ -38,5 +30,15 @@
 				</picture>
 			</div>
     <?php endif; ?>
+  	<div class="content">
+    	<?php if (get_field('page_title')) : ?>
+  			<header>
+  				<h1><?php echo roots_title(); ?></h1>
+  			</header>
+  		<?php endif; ?>	
+			<div class="entry-content">	
+				<?php the_content(); ?>
+			</div>
+		</div>
 	</article>	
 <?php endwhile; ?>

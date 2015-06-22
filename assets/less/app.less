@@ -396,13 +396,22 @@ blockquote {
 	.page {
 		background:transparent;
 		padding:0;
-		&.has-image {
-  		.content {background:@white; }
-  		.entry-image {padding:0; }
-		}
 		.content {
+  		.make-md-column(6);
   		padding:@gap / 2;
   		background:@white;
+		}
+		// With Image
+		&.has-image {
+  		.content {
+    		background:@white;
+        .make-md-column-pull(6);
+      }
+  		.entry-image {
+    		.make-md-column(6);
+    		.make-md-column-push(6);
+    		padding:0;
+  		}
 		}
 		// Contact Template
 		.contact & {

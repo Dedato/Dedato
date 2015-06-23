@@ -4,3 +4,4 @@ node_modules
 assets/css/main.min.css.map
 .grunt/ftpush/build.json
 .ftppass
+assets/manifest.json

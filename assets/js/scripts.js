@@ -3794,6 +3794,12 @@ var Dedato = {
         });
         $container.isotope(preapp, $newElements);
       });
+      // Triggered when there are no more pages left
+      ias.on('noneLeft', function() {
+        setTimeout(function() {
+          $('.grid .ias-noneleft').hide('slow');
+        }, 1000);
+      });
       // Triggered when the next page should be loaded
       ias.on('next', function(url) {
         preapp = 'appended';

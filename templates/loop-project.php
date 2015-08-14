@@ -93,10 +93,9 @@
 							</picture>
 						</a>
 					</div>
-				<?php } elseif ($featured == 'video') { 
-					$videourl = add_query_arg(array('title' => '0', 'byline' => '0', 'portrait' => '0'), $projectvideo); ?>
+				<?php } elseif ($featured == 'video') { ?>
 					<div class="entry-video">
-						<?php _e(wp_oembed_get($videourl)); ?>
+						<?php _e(wp_oembed_get($projectvideo)); ?>
 					</div>
 				<?php } ?>
 		  		<div class="entry-details">

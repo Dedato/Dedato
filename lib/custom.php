@@ -294,3 +294,33 @@ add_filter('wpseo_opengraph_image', function() use($ogimage){
    ========================================================================== */
    
 add_filter('jpeg_quality', create_function('', 'return 100;'));
+
+
+
+/* ==========================================================================
+   Add parameters to Video embedding with wp_oembed_get
+   ========================================================================== */
+
+// customize vimeo embed output
+add_filter( 'oembed_fetch_url','oembed_add_vimeo_args', 10, 3 );
+function oembed_add_vimeo_args($provider, $url, $args) {
+  if ( strpos( $provider, '//vimeo.com/') !== false ) {
+    $args = array(
+      'title'     => 0,
+      'byline'    => 0,
+      'portrait'  => 0,
+      'badge'     => 0
+    );
+    $provider = add_query_arg( $args, $provider );
+  }
+  return $provider;   
+}
+
+// customize youtube embed output  
+add_filter( 'oembed_result', 'oembed_add_youtube_args', 10, 3 );
+function oembed_add_youtube_args( $html, $url, $args ) {
+	if ( strstr( $html, 'youtube.com/embed/' ) ) {
+		$html = str_replace( '?feature=oembed', '?feature=oembed&rel=0&showinfo=0&autohide=1&hd=1', $html );
+	}
+  return $html;
+}

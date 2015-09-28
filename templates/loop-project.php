@@ -106,8 +106,8 @@
 		  				<?php the_excerpt(); ?>
 		  			</div>	
 		  			<footer class="entry-footer">
-		  				<?php if ($catoutput): echo $catoutput; ?><span class="divider">|</span><?php endif; ?>
-			  			<span class="date"><?php echo $projectdate; ?></span>
+		  				<?php if ($catoutput): echo $catoutput; ?><!--<span class="divider">|</span>--><?php endif; ?>
+			  			<span class="date"><?php //echo $projectdate; ?></span>
 			  		</footer>
 		  		</div>
 			</div>

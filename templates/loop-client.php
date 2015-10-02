@@ -1,15 +1,16 @@
 <?php if (have_posts()) :
 	while (have_posts()) : the_post();
-		$clientid 		= get_the_ID();
-		$clientslug 	= get_post($post)->post_name;
-		$clientimage 	= get_field('client_image');
-		$alt 				  = $clientimage['alt'];
+		$clientid 		  = get_the_ID();
+		$clientslug 	  = get_post($post)->post_name;
+		$clientimage 	  = get_field('client_image');
+		$clientwebsite  = get_field('client_website');
+		$alt 				    = $clientimage['alt'];
 		// Sizes
-		$img_tn_src 	= $clientimage['sizes']['thumbnail'];
-		$img_md_src 	= $clientimage['sizes']['medium'];
-		$img_md_w     = $clientimage['sizes']['medium-width'];
-		$img_md_h     = $clientimage['sizes']['medium-height'];
-		$ratio        = ($img_md_h / $img_md_w) * 100;
+		$img_tn_src 	  = $clientimage['sizes']['thumbnail'];
+		$img_md_src 	  = $clientimage['sizes']['medium'];
+		$img_md_w       = $clientimage['sizes']['medium-width'];
+		$img_md_h       = $clientimage['sizes']['medium-height'];
+		$ratio          = ($img_md_h / $img_md_w) * 100;
 		// Retina Images
 	  if (function_exists('wr2x_get_retina_from_url')) {
 			$img_tn_2x_src 	= wr2x_get_retina_from_url($img_tn_src);
@@ -27,6 +28,8 @@
 				<div class="entry-image" style="padding-bottom:<?php echo $ratio; ?>%;">
 					<?php if ($projects->have_posts()) { ?>
 						<a href="<?php echo get_post_type_archive_link('project') . $clientslug; ?>" title="<?php echo sprintf(__('View all projects for %1$s','dedato'), get_the_title() ); ?>">
+					<?php } else { ?>
+  					<a href="<?php echo $clientwebsite['url']; ?>" title="<?php echo sprintf(__('Visit %1$s website', 'dedato'), get_the_title() ); ?>" target="_blank">
 					<?php } ?>	
 						<picture class="stretch">
 							<!--[if IE 9]><video style="display: none;"><![endif]-->
@@ -35,15 +38,19 @@
 							<!--[if IE 9]></video><![endif]-->
 							<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" srcset="<?php if ($img_md_2x_src) { echo $img_md_2x_src . ' 2x, '; } echo $img_md_src .' 1x'; ?>" alt="<?php echo $alt; ?>" />
 						</picture>
-					<?php if ($projects->have_posts()) { ?></a><?php } ?>	
+					</a>
 				</div>
 				<div class="entry-details">
 		  			<?php if ($projects->have_posts()) { ?>
-						<a href="<?php echo get_post_type_archive_link('project') . $clientslug; ?>" title="<?php echo sprintf(__('View all projects for %1$s','dedato'), get_the_title() ); ?>">
-					<?php } ?>	
-		  					<h3 class="entry-title"><?php the_title(); ?></h3>
-		  			<?php if ($projects->have_posts()) { ?></a><?php }
-					wp_reset_postdata(); ?>
+						  <a href="<?php echo get_post_type_archive_link('project') . $clientslug; ?>" title="<?php echo sprintf(__('View all projects for %1$s','dedato'), get_the_title() ); ?>">
+  						  <h3 class="entry-title"><?php the_title(); ?></h3>
+						  </a>  
+            <?php } else { ?>
+              <a href="<?php echo $clientwebsite['url']; ?>" title="<?php echo sprintf(__('Visit %1$s website', 'dedato'), get_the_title() ); ?>" target="_blank">
+		  				  <h3 class="entry-title"><?php the_title(); ?></h3>
+              </a>  
+		  			<?php }
+            wp_reset_postdata(); ?>
 		  			<!--<ul class="archive-list">
             <?php 
 		  		  // All projects

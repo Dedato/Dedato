@@ -21,7 +21,7 @@ if ( isset($wp_query->query_vars['klant']) ) {
         'key'             => 'project_date',
         'type'            => 'date'
       ),
-			'orderby' 			  => 'meta_value_num date',
+			'orderby' 			  => 'meta_value_num title',
 			'order' 				  => 'DESC',
 			'paged' 				  => $paged
 		));
@@ -35,7 +35,7 @@ if ( isset($wp_query->query_vars['klant']) ) {
       'key'           => 'project_date',
       'type'          => 'date'
     ),
-		'orderby' 			=> 'meta_value_num date',
+		'orderby' 			=> 'meta_value_num title',
 		'order' 				=> 'DESC',
 		'paged' 				=> $paged
 	));

@@ -4,7 +4,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $wp_query = new WP_Query( array(
 	'post_type' 	=> 'publication',
 	'meta_key' 		=> 'publication_date',
-	'orderby' 		=> 'meta_value_num date',
+	'orderby' 		=> 'meta_value_num title',
 	'order' 			=> 'DESC',		
 	'paged' 			=> $paged
 )); ?>

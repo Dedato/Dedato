@@ -30,7 +30,7 @@ $wp_query = new WP_Query( array(
     'key'             => 'project_date',
     'type'            => 'date'
   ),
-	'orderby' 			  => 'meta_value_num date',
+	'orderby' 			  => 'meta_value_num title',
 	'order' 				  => 'DESC',
 	'paged' 				  => $paged
 ));

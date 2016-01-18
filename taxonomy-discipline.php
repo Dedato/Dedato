@@ -26,7 +26,7 @@ if( isset($wp_query->query_vars['klant']) ) {
 			'connected_items' => $clientid,
 			'discipline' 		=> $term->slug,
 			'meta_key' 			=> 'project_date',
-			'orderby' 			=> 'meta_value_num date',
+			'orderby' 			=> 'meta_value_num title',
 			'order' 				=> 'DESC',
 			'paged' 				=> $paged
 		));
@@ -38,7 +38,7 @@ if( isset($wp_query->query_vars['klant']) ) {
 		'post_type' 		=> 'project',
 		'discipline' 		=> $term->slug,
 		'meta_key' 			=> 'project_date',
-		'orderby' 			=> 'meta_value_num date',
+		'orderby' 			=> 'meta_value_num title',
 		'order' 				=> 'DESC',
 		'paged' 				=> $paged
 	));

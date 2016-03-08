@@ -75,7 +75,8 @@ var Dedato = {
             $(api.element).on('click', '.googleplus', function() {
                api.openPopup('googlePlus');
             });
-         }
+         },
+         buttons: {}
       });
     }
   },

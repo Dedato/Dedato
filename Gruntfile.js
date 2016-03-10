@@ -75,19 +75,22 @@ module.exports = function(grunt) {
     },
     modernizr: {
       build: {
-        devFile: 'assets/vendor/modernizr/modernizr.js',
-        outputFile: 'assets/js/vendor/modernizr.min.js',
-        files: {
+        'crawl': false,
+        'customTests': [],
+        'dest': 'assets/js/vendor/modernizr.min.js',
+        'tests': [],
+        'options': [
+          'html5shiv',
+          'setClasses'
+        ],
+        'files': {
           'src': [
-            ['assets/js/scripts.min.js'],
-            ['assets/css/main.min.css']
+            'assets/js/scripts.min.js',
+            'assets/css/main.min.css'
           ]
         },
-        extra: {
-          shiv: true
-        },
-        uglify: true,
-        parseFiles: true
+        'parseFiles': true,
+        'uglify': true
       }
     },
     version: {
@@ -110,7 +113,10 @@ module.exports = function(grunt) {
       dist: [
         'assets/css/main.min.css',
         'assets/js/scripts.min.js'
-      ]
+      ],
+      options: {
+        force: true
+      }
     },
     ftpush: {
       build: {
@@ -132,6 +138,8 @@ module.exports = function(grunt) {
           'assets/js/_main.js',
           'assets/js/scripts.js',
           'assets/js/plugins',
+          'node_modules',
+          '.DS_Store',
           '.editorconfig',
           '.ftppass',
           '.git',

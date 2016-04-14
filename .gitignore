@@ -5,3 +5,5 @@ assets/css/main.min.css.map
 .grunt/ftpush/build.json
 .ftppass
 assets/manifest.json
+.DS_Store
+DEDATO_INSTRUCTIONS.md
